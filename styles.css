@@ -1,9 +1,6 @@
 #title{
 	background-color: #30D5C8;
   }
-
-
-
 .jumbotron{
 	background-color: #ffffff;
 }
@@ -13,12 +10,13 @@
 }
 
 .sch{
-	padding-left: 30%;
-	padding-right: 30%;
+	display: flex;
+	padding-left: 25%;
+	padding-right: 18%;
+	justify-content: center;
 }
 
 img{
-	left: 25%;
 	border-radius: 20px;
 }
 
