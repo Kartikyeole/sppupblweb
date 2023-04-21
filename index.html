@@ -17,6 +17,26 @@
     #title {
       font-family: 'Kumar One', cursive;
     }
+
+    .scrolling-container{
+      max-height: 250px;
+      width: 100%;
+      overflow-x:auto;
+      white-space: nowrap;
+      
+    }
+    .scrolling-container::-webkit-scrollbar {
+      width: 0px;
+      height: 0px;
+      background-color: #000000;
+    }
+    .scrolling-container::-webkit-scrollbar-thumb {
+      background-color: #ffffff;
+    }
+    /* Add some spacing between the items */
+    .scrolling-container .item {
+      display: inline-block;
+    }
   </style>
 
 
@@ -65,7 +85,40 @@
       </div>
     </div>
   </div>
-  <img src="img\img1.jpg" alt="">
+
+  <div class="day">
+  <div class="container">
+    <div class="row">
+      <div class="col"><div class="scrolling-container">
+        <div class="item" id="1"><span ><img src=""  id="img0"alt=""></span> <span class = "time">oo:oo </span> <p id="cond0"> </p></div>
+        <div class="item" id="1"><span ><img src=""  id="img1"alt=""></span> <span class = "time">o1:oo </span> <p id="cond1"> </p></div>
+        <div class="item" id="1"><span ><img src=""  id="img2"alt=""></span> <span class = "time">o2:oo </span> <p id="cond2"> </p></div>
+        <div class="item" id="1"><span ><img src=""  id="img3"alt=""></span> <span class = "time">o3:oo </span> <p id="cond3"> </p></div>
+        <div class="item" id="1"><span ><img src=""  id="img4"alt=""></span> <span class = "time">o4:oo </span> <p id="cond4"> </p></div>
+        <div class="item" id="1"><span ><img src=""  id="img5"alt=""></span> <span class = "time">o5:oo </span> <p id="cond5"> </p></div>
+        <div class="item" id="1"><span ><img src=""  id="img6"alt=""></span> <span class = "time">o6:oo </span> <p id="cond6"> </p></div>
+        <div class="item" id="1"><span ><img src=""  id="img7"alt=""></span> <span class = "time">o7:oo </span> <p id="cond7"> </p></div>
+        <div class="item" id="1"><span ><img src=""  id="img8"alt=""></span> <span class = "time">o8:oo </span> <p id="cond8"> </p></div>
+        <div class="item" id="1"><span ><img src=""  id="img9"alt=""></span> <span class = "time">o9:oo </span> <p id="cond9"> </p></div>
+        <div class="item" id="1"><span ><img src=""  id="img10"alt=""></span><span class = "time">10:oo </span><p id="cond10"></p></div>
+        <div class="item" id="1"><span ><img src=""  id="img11"alt=""></span><span class = "time">11:oo </span><p id="cond11"></p></div>
+        <div class="item" id="1"><span ><img src=""  id="img12"alt=""></span><span class = "time">12:oo </span><p id="cond12"></p></div>
+        <div class="item" id="1"><span ><img src=""  id="img13"alt=""></span><span class = "time">13:oo </span><p id="cond13"></p></div>
+        <div class="item" id="1"><span ><img src=""  id="img14"alt=""></span><span class = "time">14:oo </span><p id="cond14"></p></div>
+        <div class="item" id="1"><span ><img src=""  id="img15"alt=""></span><span class = "time">15:oo </span><p id="cond15"></p></div>
+        <div class="item" id="1"><span ><img src=""  id="img16"alt=""></span><span class = "time">16:oo </span><p id="cond16"></p></div>
+        <div class="item" id="1"><span ><img src=""  id="img17"alt=""></span><span class = "time">17:oo </span><p id="cond17"></p></div>
+        <div class="item" id="1"><span ><img src=""  id="img18"alt=""></span><span class = "time">18:oo </span><p id="cond18"></p></div>
+        <div class="item" id="1"><span ><img src=""  id="img19"alt=""></span><span class = "time">19:oo </span><p id="cond19"></p></div>
+        <div class="item" id="1"><span ><img src=""  id="img20"alt=""></span><span class = "time">20:oo </span><p id="cond20"></p></div>
+        <div class="item" id="1"><span ><img src=""  id="img21"alt=""></span><span class = "time">21:oo </span><p id="cond21"></p></div>
+        <div class="item" id="1"><span ><img src=""  id="img22"alt=""></span><span class = "time">22:oo </span><p id="cond22"></p></div>
+        <div class="item" id="1"><span ><img src=""  id="img23"alt=""></span><span class = "time">23:oo </span><p id="cond23"></p></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
   <script>
     var cityname
     function citydata(){
@@ -76,10 +129,9 @@
     }
     function changeit() {
       citydata()
-      fetch('https://api.weatherapi.com/v1/current.json?key=0dab0f140b5b4da798d74954231904&q='+cityname+'&aqi=no')
+      fetch('https://api.weatherapi.com/v1/forecast.json?key=0dab0f140b5b4da798d74954231904&q=' +cityname+ '&days=1&aqi=no&alerts=no')
         .then(res => res.json())
         .then(data => {
-          console.log(data)
           var city = data.location
           var forc = data.current
           document.getElementById("y").innerText = city.name;
@@ -93,12 +145,70 @@
           document.getElementById("humidity").innerText = forc.humidity;
           document.getElementById("cloud").innerText = forc.cloud;
           document.getElementById("uv").innerText = forc.uv;
+          var fday = data.forecast.forecastday[0].hour
+          document.getElementById("img0").src = fday[0].condition.icon
+          document.getElementById("img1").src = fday[1].condition.icon
+          document.getElementById("img2").src = fday[2].condition.icon
+          document.getElementById("img3").src = fday[3].condition.icon
+          document.getElementById("img4").src = fday[4].condition.icon
+          document.getElementById("img5").src = fday[5].condition.icon
+          document.getElementById("img6").src = fday[6].condition.icon
+          document.getElementById("img7").src = fday[7].condition.icon
+          document.getElementById("img8").src = fday[8].condition.icon
+          document.getElementById("img9").src = fday[9].condition.icon
+          document.getElementById("img10").src = fday[10].condition.icon
+          document.getElementById("img11").src = fday[11].condition.icon
+          document.getElementById("img12").src = fday[12].condition.icon
+          document.getElementById("img13").src = fday[13].condition.icon
+          document.getElementById("img14").src = fday[14].condition.icon
+          document.getElementById("img15").src = fday[15].condition.icon
+          document.getElementById("img16").src = fday[16].condition.icon
+          document.getElementById("img17").src = fday[17].condition.icon
+          document.getElementById("img18").src = fday[18].condition.icon
+          document.getElementById("img19").src = fday[19].condition.icon
+          document.getElementById("img20").src = fday[20].condition.icon
+          document.getElementById("img21").src = fday[21].condition.icon
+          document.getElementById("img22").src = fday[22].condition.icon
+          document.getElementById("img23").src = fday[23].condition.icon
+
+
+          document.getElementById("cond0").innerText = fday[0].condition.text;
+          document.getElementById("cond1").innerText = fday[1].condition.text;
+          document.getElementById("cond2").innerText = fday[2].condition.text;
+          document.getElementById("cond3").innerText = fday[3].condition.text;
+          document.getElementById("cond4").innerText = fday[4].condition.text;
+          document.getElementById("cond5").innerText = fday[5].condition.text;
+          document.getElementById("cond6").innerText = fday[6].condition.text;
+          document.getElementById("cond7").innerText = fday[7].condition.text;
+          document.getElementById("cond8").innerText = fday[8].condition.text;
+          document.getElementById("cond9").innerText = fday[9].condition.text;
+          document.getElementById("cond10").innerText = fday[10].condition.text;
+          document.getElementById("cond11").innerText = fday[11].condition.text;
+          document.getElementById("cond12").innerText = fday[12].condition.text;
+          document.getElementById("cond13").innerText = fday[13].condition.text;
+          document.getElementById("cond14").innerText = fday[14].condition.text;
+          document.getElementById("cond15").innerText = fday[15].condition.text;
+          document.getElementById("cond16").innerText = fday[16].condition.text;
+          document.getElementById("cond17").innerText = fday[17].condition.text;
+          document.getElementById("cond18").innerText = fday[18].condition.text;
+          document.getElementById("cond19").innerText = fday[19].condition.text;
+          document.getElementById("cond20").innerText = fday[20].condition.text;
+          document.getElementById("cond21").innerText = fday[21].condition.text;
+          document.getElementById("cond22").innerText = fday[22].condition.text;
+          document.getElementById("cond23").innerText = fday[23].condition.text;
+
+
+          console.log(fday[0].condition.icon)
+
         })
     }
+
+
 
     $(document).ready(function () {
       $("#x").click(function(){
         $("#y").show();
+        $(".day").show();
       });
     });
 
